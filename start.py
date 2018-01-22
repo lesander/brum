@@ -1,4 +1,4 @@
 import config
 
-print 'Starting BRUM!'
+print 'Starting BRUM now..'
 print 'GH token is '+config.token()+'!'
