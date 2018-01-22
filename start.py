@@ -4,6 +4,7 @@ import time
 print 'Starting BRUM now. :)'
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(32, GPIO.IN)
-  while True:
-    print GPIO.input(32)
-    time.sleep(1)
+
+while True:
+  print GPIO.input(32)
+  time.sleep(1)
