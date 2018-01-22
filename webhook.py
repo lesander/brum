@@ -25,6 +25,6 @@ Starting update procedure.
     client_connection.sendall(http_response)
     client_connection.close()
     
-    call(["cd", "/home/brum/repo"])
+    call(["cd", "/home/brum/repo/"])
     call(["git", "pull", "https://brumpi:"+config.token()+"@github.com/lesander/brum.git"])
     
