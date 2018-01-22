@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 10
+sleep 20
 
 # Start the webserver.
 python /home/brum/repo/webhook.py >> /home/brum/repo/all.log 2>&1 &
