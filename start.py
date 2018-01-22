@@ -1,3 +1,4 @@
-GH_TOKEN=f5d7da47d4f7697c3247ba8529816b0d8331e62b
+import config
 
 print 'Starting BRUM!'
+print 'GH token is '+config.token()+'!'
