@@ -1,3 +1,3 @@
 import config
 
-print 'Starting BRUM now! :)'
+print 'Starting BRUM now!! :)'
