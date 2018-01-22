@@ -1,9 +1,12 @@
 import socket
+import os
 from subprocess import call
 
 import config
 
 HOST, PORT = 'localhost', 5000
+
+os.chdir('/home/brum/repo')
 
 listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -25,6 +28,5 @@ Starting update procedure.
     client_connection.sendall(http_response)
     client_connection.close()
     
-    call(["cd", "/home/brum/repo/"])
     call(["git", "pull", "https://brumpi:"+config.token()+"@github.com/lesander/brum.git"])
     
