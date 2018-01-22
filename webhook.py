@@ -29,5 +29,6 @@ Starting update procedure.
     client_connection.close()
     
     call(["git", "pull", "https://brumpi:"+config.token()+"@github.com/lesander/brum.git"])
+    call(["chmod", "+x", "/home/brum/repo/boot.sh"])
     print 'done!'
     
