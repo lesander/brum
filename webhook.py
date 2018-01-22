@@ -31,6 +31,6 @@ Starting update procedure.
     call(["git", "pull", "https://brumpi:"+config.token()+"@github.com/lesander/brum.git"])
     call(["chmod", "+x", "/home/brum/repo/boot.sh"])
     call(["kill", "-15", "$(pgrep -f /home/brum/repo/start.py)"])
-    call(["python", "/home/brum/repo/start.py", "&"])
+    call("python /home/brum/repo/start.py &", shell=True)
     print "done!"
     
