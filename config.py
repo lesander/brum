@@ -7,6 +7,13 @@ def sleep():
 def warnings():
     return False
 
+stepTimings = {
+    'slow': .001,
+    'fast': .0007
+}
+
+stepTiming = stepTimings['slow']
+
 motors = [
     {
         id: 'left',
@@ -25,3 +32,5 @@ sensors = [
     { id: 'center', 'pin': 15 },
     { id: 'right', 'pin': 18 }
 ]
+
+piezo = { id: 'front', 'pin': 16 }
