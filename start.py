@@ -9,7 +9,7 @@ import RPi.GPIO as GPIO
 import time, sys
 from move import move
 
-print '--- BRUM STARTING ---'
+print '--- BRUM STARTING!!! ---'
 
 """""""""""""""""""""
   Initialize GPIO
@@ -64,20 +64,27 @@ try:
             sys.exit(0)
 
         # 1. Move forward on the condition that we see a black line in center.
+
+        # Move forward if we're on the line.
         move([0, 1, 0], 'forward')
-        #move([1, 1, 1], 'forward')
+
+        # Move forward if we can't see anything.
         move([0, 0, 0], 'forward')
 
-        #move.forwardIf([0, 0, 0])
+        # Adjust to the left or right.
+        move([1, 0, 0], 'left')
+        move([0, 0, 1], 'right')
 
-        # 2. Adjust to the right if we've strayed off to the left.
-        #move.adjustToRightIf([0, 0, 1])
+        # Take a left or right turn.
+        move([1, 1, 0], 'left')
+        move([0, 1, 1], 'right')
 
-        # 3. Adjust to the left if we've strayed off to the right.
-        #move.adjustToLeftIf([1, 0, 0])
+        # Edge cases.
+        move([1, 0, 1], 'forward')
 
-        # x. Make a decision: move forward on the crossing?
-        #move.forwardIf([1, 1, 1])
+        # The final crossing decision:
+        #move([1, 1, 1], 'forward') # <- decision
+        move([1, 1, 1], 'right', False, True) # <- decision
 
         # Wait until next round.
         time.sleep(config.sleep())
