@@ -14,6 +14,10 @@ import sys
 previousLiveSensors = False
 hasHadCrossingBefore = False
 
+# Define the sequence of on/off steps that the
+# stepper motor should use.
+# This sequence is recommended by the creator(s)
+# of the stepper motors we use for BRUM.
 def _sequence():
     seq = []
     seq = range(0, 8)
@@ -27,13 +31,17 @@ def _sequence():
     seq[7] = [1,0,0,1]
     return seq
 
+# We complete one step of the sequence in this function.
+# The parameter step tells us what step of the
+# sequence we're supposed to execute.
+# The movement parameter tells us in what direction the
+# two stepper motors should turn. We translate that to the
+# order of the sequence to execute.
 def motorSequence(motors, sequence, step, movement):
 
     sequenceReverse = list(reversed(sequence))
 
     if (movement == 'left'):
-        #motor0Sequence = sequence
-        #motor1Sequence = sequenceReverse
         motor0Sequence = sequenceReverse
         motor1Sequence = sequenceReverse
     elif (movement == 'right'):
@@ -68,12 +76,9 @@ def motorSequence(motors, sequence, step, movement):
         else:
             GPIO.output(motorPin, False)
 
-def _forward(motors, sequence, step):
-    """
-    motorSequence(motors, sequence, step, 'forward')
-    """
-
-def move(requiredSensors, action, previousRequiredSensors = False, direction = False):
+# This function executes one full 8-step sequence for each motor,
+# based on the current sensor readings and the required sensor states.
+def move(requiredSensors, action, direction = False):
 
     degrees = False
     degreeTable = {

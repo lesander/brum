@@ -58,23 +58,16 @@ GPIO.setup(config.piezo['pin'], GPIO.OUT)
   Let's get this party started!
 """""""""""""""""""""""""""""""""
 
+# The start script gets executed once the webhook has written
+# the destination to disk. We can now start moving!
+
 print '[*] Ready for some action!'
-
-# Wait for the web client to make a decision.
-# TODO
-waitingForDecision = True
-
-#while waitingForDecision:
-
-    # TODO ...
-
 
 # Open the file the webhook has just written to
 # and read the destination.
 file = open('destination.txt', 'r')
 storeName = file.readlines()[0].replace("\n", '')
 destination = config.ways[storeName]
-#destination = 'right'
 
 print '[*] The destination is ' + str(destination)
 
@@ -106,11 +99,13 @@ try:
         # Edge cases.
         move([1, 0, 1], 'forward')
 
-        # The final crossing destination:
-        move([1, 1, 1], destination, False, destination)
+        # The final crossing destination
+        move([1, 1, 1], destination, destination)
 
         # Wait until next round.
         time.sleep(config.sleep())
 
+# When we press CTRL+C in the console, we should clean up our GPIO states
+# before exiting the script.
 except KeyboardInterrupt:
   GPIO.cleanup()
