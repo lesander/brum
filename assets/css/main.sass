@@ -1,0 +1,106 @@
+---
+# Bestuurbrum.nl styles.
+# SASS is basically CSS with superpowers.
+# Check out http://sass-lang.com
+---
+
+@import "https://fonts.googleapis.com/css?family=Roboto|Material+Icons"
+$font-family: 'Roboto', sans-serif
+
+$color-sand: #f9ead7
+$color-white: #f8f9fa
+$color-blue: #3498db
+$color-green: #2ecc71
+$color-purple: #6f42c1
+$color-grey-light: #555
+$color-grey-dark: #222
+
+body, html
+  background-color: $color-sand
+
+#header
+  background-color: $color-grey-dark
+  //background-image: url('./header.png')
+  background-size: cover
+  background-position: center
+  color: $color-white
+  padding: 1rem
+
+  h1
+    font-size: 2rem
+    font-family: $font-family
+    font-weight: bold
+    text-align: left
+    margin-bottom: 0
+
+    img
+      transform: rotate(-45deg)
+      max-width: 40px
+      margin-right: 5px
+      margin-top: -5px
+
+#buttons
+  padding: 1rem
+
+  .scroll-container
+    overflow-x: scroll
+
+  .row
+    width: 200vw
+
+  img
+    padding: 2rem
+    cursor: pointer
+
+  .card
+
+    border: 7px solid transparent
+    border-radius: 10px
+    margin-bottom: 1rem
+
+    &.selected
+      border: 7px solid $color-blue
+
+      &::after
+        content: "\E86C"
+        font-family: 'Material Icons'
+        position: absolute
+        bottom: 0
+        right: 0
+        padding: .1rem .5rem
+        color: $color-blue
+        font-size: 2rem
+
+    &[data-location=starbucks]
+      background-color: $color-green
+
+    &[data-location=apple]
+      background-color: $color-white
+
+    &[data-location=sciencecenter]
+      background-color: $color-purple
+
+  .submit > button
+    margin-top: 1.5rem
+    font-size: 2rem
+    border-radius: 10px
+    border-color: transparent
+
+    &[disabled]
+      background-color: lighten($color-grey-light, 2)
+
+    i
+      font-size: 2rem
+      margin-top: 10px
+
+
+::-webkit-scrollbar-track
+  border-radius: 10px
+  background-color: $color-white
+
+::-webkit-scrollbar
+  width: 12px
+
+::-webkit-scrollbar-thumb
+  border-radius: 10px
+  background-color: $color-blue
