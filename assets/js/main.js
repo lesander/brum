@@ -46,9 +46,26 @@ $(submitBtn).on(`click`, (event) => {
       console.log(response)
     }
 
-    // TODO: Display the progress screen.
-    //       Initialize polling for finished status.
-    
+    // Display the in-transit screen.
+    $(`#buttons`).hide()
+    $(`#status`).show()
+
+    // Start polling for the finished status every five seconds.
+    // Once BRUM has arrived, we stop the interval and show the
+    // user the arrived screen.
+    const polling = setInterval(() => {
+
+      if (!hasArrived) {
+        $.post(`${endpoint}/status`, (response) => {
+          if (response.body == 'arrived') {
+            clearInterval(polling)
+            $(`#status > .in-transit`).hide()
+            $(`#status > .arrived`).show()
+          }
+        })
+      }
+
+    }, 5000)
 
   })
 
