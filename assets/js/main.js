@@ -7,6 +7,7 @@
 
 const cardImages = $(`.card > img`)
 const submitBtn = $(`.submit > button`)
+const endpoint = `https://api.bestuurbrum.nl`
 
 /**
  * Select or deselect the clicked card on click
@@ -38,7 +39,7 @@ $(submitBtn).on(`click`, (event) => {
 
   const value = $(`.card.selected`).attr(`data-location`)
 
-  $.post(`http://github.brum.ultrahook.com/dawae/${value}`, (response) => {
+  $.post(`${endpoint}/destination/${value}`, (response) => {
 
     // Handle any error(s).
     if (response.statusCode !== 200) {
