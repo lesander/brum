@@ -132,6 +132,10 @@ def move(requiredSensors, action, previousRequiredSensors = False, direction = F
 
             elif (hasHadCrossingBefore == True and liveSensors == [1,1,1]):
                 print 'FINISH'
+
+                with open('status.txt', 'w') as file:
+                    file.write('arrived')
+
                 sound.play(5)
                 sys.exit(0)
                 break

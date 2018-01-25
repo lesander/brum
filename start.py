@@ -18,6 +18,10 @@ print '--- BRUM STARTING!!! ---'
 # Go to the root of the brum repository.
 os.chdir('/home/brum/repo')
 
+# Reset the status file.
+with open('status.txt', 'w') as file:
+    file.write('in-transit')
+
 # Clean gpio states before we continue.
 print '[*] Cleaning GPIO states and setting mode..'
 GPIO.setwarnings(config.warnings())
@@ -67,7 +71,7 @@ waitingForDecision = True
 
 # Open the file the webhook has just written to
 # and read the destination.
-file = open('wae.txt', 'r')
+file = open('destination.txt', 'r')
 storeName = file.readlines()[0].replace("\n", '')
 destination = config.ways[storeName]
 #destination = 'right'
