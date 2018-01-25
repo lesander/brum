@@ -73,32 +73,6 @@ def _forward(motors, sequence, step):
     motorSequence(motors, sequence, step, 'forward')
     """
 
-def _left(motors, sequence, step):
-    """
-    sequenceReverse = _sequenceReverse(sequence)
-
-    # Start a loop for every pin of a single motor.
-    for pin in range(0, 4):
-
-        # TODO rewrite to more elegant solution
-        #print 'step ' + str(step)
-
-        # Motor 0
-        motorPin = motors[0][pin]
-        #print 'motorPin ' + str(motorPin)
-        if (sequence[step][pin] != 0):
-            GPIO.output(motorPin, 1)
-        else:
-            GPIO.output(motorPin, False)
-
-        # Motor 1
-        motorPin = motors[1][pin]
-        #print 'motorPin ' + str(motorPin)
-        if (sequence[step][pin] != 0):
-            GPIO.output(motorPin, 1)
-        else:
-            GPIO.output(motorPin, False)
-    """
 def move(requiredSensors, action, previousRequiredSensors = False, direction = False):
 
     degrees = False
@@ -130,9 +104,6 @@ def move(requiredSensors, action, previousRequiredSensors = False, direction = F
         if (previousLiveSensors == False):
             previousLiveSensors = liveSensors
             print liveSensors
-            #if (requiredSensors == [1, 1, 1] and hasHadCrossingBefore == True):
-            #    print 'Finish?'
-            #    break
 
         if (liveSensors != previousLiveSensors):
             print liveSensors
@@ -175,12 +146,6 @@ def move(requiredSensors, action, previousRequiredSensors = False, direction = F
             motorSequence(motors, sequence, step, 'left')
         elif (action == 'right'):
             motorSequence(motors, sequence, step, 'right')
-        #elif (action == 'stop' and previousLiveSensors == previousRequiredSensors):
-        #    print 'Finish?'
-        #    break
-        #elif (action == 'stop' and hasHadCrossingBefore and requiredSensors == [1,1,1]):
-        #    print 'Finish??'
-        #    break
         else:
             print '[!] Unknown action ' + str(action) +'.'
             break
