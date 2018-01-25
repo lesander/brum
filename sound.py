@@ -42,6 +42,10 @@ def buzz(pin, pitch, duration):
 # Play the given tune using a preset format of pitches.
 # We loop through the pitches and then create short buzzes.
 # When we play those buzzes fast enough, a melody will be heard.
+#
+# The preset pitches have been taken from the internet (tm),
+# since figuring out pitches manually in order to create a
+# melody is waaay out of the scope of this project.
 def play(tune):
 
     pin = init()
