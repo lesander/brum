@@ -3,17 +3,20 @@
 # Written by Tian, Bas & Sander
 # Copyright (c) 2018 All Rights Reserved.
 # https://github.com/lesander/brum
+# start.py
 
-import config, sound
+import config, sound, time, sys, os
 import RPi.GPIO as GPIO
-import time, sys
 from move import move
 
 print '--- BRUM STARTING!!! ---'
 
-"""""""""""""""""""""
-  Initialize GPIO
-"""""""""""""""""""""
+"""""""""""""""""""""""""""""
+ Initialize GPIO & Settings
+"""""""""""""""""""""""""""""
+
+# Go to the root of the brum repository.
+os.chdir('/home/brum/repo')
 
 # Clean gpio states before we continue.
 print '[*] Cleaning GPIO states and setting mode..'
@@ -21,6 +24,7 @@ GPIO.setwarnings(config.warnings())
 GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 
+# Print the sleep configuration.
 print '[*] Speed is set to ' + str(config.stepTiming)
 
 # Register buttons.
@@ -40,11 +44,11 @@ for i in config.sensors:
     sensor = i
     GPIO.setup(sensor['pin'], GPIO.IN)
 
-# Register leds
-# TODO
-
-# Register audio
+# Register piezo audio.
 GPIO.setup(config.piezo['pin'], GPIO.OUT)
+
+# Connect to the bluetooth speaker.
+
 
 """""""""""""""""""""""""""""""""
   Let's get this party started!
@@ -52,18 +56,34 @@ GPIO.setup(config.piezo['pin'], GPIO.OUT)
 
 print '[*] Ready for some action!'
 
+# Wait for the web client to make a decision.
+# TODO
+waitingForDecision = True
+
+#while waitingForDecision:
+
+    # TODO ...
+
+
+# Open the file the webhook has just written to
+# and read the destination.
+file = open('wae.txt', 'r')
+storeName = file.readlines()[0].replace("\n", '')
+destination = config.ways[storeName]
+#destination = 'right'
+
+print '[*] The destination is ' + str(destination)
+
 try:
     while True:
 
-        # 0. Stop everything if the panic button is pressed.
+        # Stop everything if the panic button is pressed.
         # BUG: this only runs at the beginning of every round!
         bumperStatus = GPIO.input(Buttons['panic'])
         if (bumperStatus==0):
             print '[!] Panic button pressed, stopping..'
             sound.play(5)
             sys.exit(0)
-
-        # 1. Move forward on the condition that we see a black line in center.
 
         # Move forward if we're on the line.
         move([0, 1, 0], 'forward')
@@ -82,9 +102,8 @@ try:
         # Edge cases.
         move([1, 0, 1], 'forward')
 
-        # The final crossing decision:
-        #move([1, 1, 1], 'forward') # <- decision
-        move([1, 1, 1], 'right', False, True) # <- decision
+        # The final crossing destination:
+        move([1, 1, 1], destination, False, destination)
 
         # Wait until next round.
         time.sleep(config.sleep())

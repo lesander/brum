@@ -1,8 +1,12 @@
-def token():
-    return "f5d7da47d4f7697c3247ba8529816b0d8331e62b"
+#!/usr/bin/env python
+# BRUM v1.0.0
+# Written by Tian, Bas & Sander
+# Copyright (c) 2018 All Rights Reserved.
+# https://github.com/lesander/brum
+# config.py
 
 def sleep():
-    return .1
+    return 0
 
 def warnings():
     return False
@@ -17,13 +21,13 @@ stepTiming = stepTimings['slow']
 motors = [
     {
         id: 'left',
-        #'pins': [2, 3, 4, 17]
-        'pins': [17, 4, 3, 2]
+        'pins': [2, 3, 4, 17]
+        #'pins': [17, 4, 3, 2]
     },
     {
         id: 'right',
-        #'pins': [27, 22, 10, 9]
-        'pins': [9, 10, 22, 27]
+        'pins': [27, 22, 10, 9]
+        #'pins': [9, 10, 22, 27]
     }
 ]
 
@@ -34,3 +38,9 @@ sensors = [
 ]
 
 piezo = { id: 'front', 'pin': 16 }
+
+ways = {
+    'apple': 'forward',
+    'starbucks': 'left',
+    'siencecenter': 'right'
+}

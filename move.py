@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# BRUM v1.0.0
+# Written by Tian, Bas & Sander
+# Copyright (c) 2018 All Rights Reserved.
+# https://github.com/lesander/brum
+# move.py
+
 import config, sensors
 import RPi.GPIO as GPIO
 from time import sleep
@@ -27,11 +34,11 @@ def motorSequence(motors, sequence, step, movement):
     if (movement == 'left'):
         #motor0Sequence = sequence
         #motor1Sequence = sequenceReverse
-        motor0Sequence = sequence
-        motor1Sequence = sequence
-    elif (movement == 'right'):
         motor0Sequence = sequenceReverse
         motor1Sequence = sequenceReverse
+    elif (movement == 'right'):
+        motor0Sequence = sequence
+        motor1Sequence = sequence
     elif (movement == 'forward'):
         motor0Sequence = sequence
         motor1Sequence = sequenceReverse
@@ -96,8 +103,8 @@ def move(requiredSensors, action, previousRequiredSensors = False, direction = F
 
     degrees = False
     degreeTable = {
-        'right': 512*3,
-        'left': 512*11,
+        'left': 512*3,
+        'right': 512*11,
         'forward': 0
     }
 
@@ -134,7 +141,8 @@ def move(requiredSensors, action, previousRequiredSensors = False, direction = F
                 hasHadCrossingBefore = True
 
                 print 'direction? '
-                direction = raw_input()
+                #direction = raw_input()
+                #direction = 'left'
                 print 'degrees = ' + str(degreeTable[direction])
                 degrees = degreeTable[direction]
 
