@@ -57,7 +57,7 @@ $(submitBtn).on(`click`, (event) => {
     const polling = setInterval(() => {
 
       $.post(`${endpoint}/status`, (response) => {
-        if (response.body == 'arrived') {
+        if (response == 'arrived') {
           clearInterval(polling)
           $(`#status > .in-transit`).hide()
           $(`#status > .arrived`).show()

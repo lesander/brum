@@ -9,12 +9,14 @@ $context = stream_context_create([
 		'content' => http_build_query([])
 	]
 ]);
-
+file_put_contents("path.txt", $path);
 if ($path == '/status') {
 	echo file_get_contents("status.txt");
 }
 
-else if ($path == '/setstatus') {
+else if (substr( $path, 0, 10 ) === "/setstatus") {
+	echo "SETSTATUS to " . $_GET["s"];
+	var_dump($_GET);
 	file_put_contents("status.txt", $_GET["s"]);
 }
 
