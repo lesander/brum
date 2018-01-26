@@ -8,6 +8,7 @@
 import config, sound, time, sys, os, urllib2
 import RPi.GPIO as GPIO
 from move import move
+from subprocess import call
 
 print '--- BRUM STARTING!!! ---'
 
@@ -69,6 +70,8 @@ print '[*] Ready for some action!'
 file = open('destination.txt', 'r')
 storeName = file.readlines()[0].replace("\n", '')
 destination = config.ways[storeName]
+
+call("omxplayer -o local /home/brum/repo/sounds/"+str(storeName)+".ogg &", shell=True)
 
 print '[*] The destination is ' + str(destination)
 

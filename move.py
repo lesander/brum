@@ -10,6 +10,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 import sound
 import sys, urllib2
+from subprocess import call
 
 previousLiveSensors = False
 hasHadCrossingBefore = False
@@ -122,6 +123,8 @@ def move(requiredSensors, action, direction = False):
                 print 'degrees = ' + str(degreeTable[direction])
                 degrees = degreeTable[direction]
 
+                call("omxplayer -o local /home/brum/repo/sounds/" + str(direction) + ".ogg &", shell=True)
+
                 # first let's move a little forward.
                 print 'moving forward a little first..'
                 y = 0
@@ -141,6 +144,9 @@ def move(requiredSensors, action, direction = False):
                 #with open('status.txt', 'w') as file:
                 #    file.write('arrived')
                 urllib2.urlopen("http://188.166.124.168/setstatus?s=arrived").read()
+
+                call("omxplayer -o local /home/brum/repo/sounds/bereikt.ogg", shell=True)
+                call("omxplayer -o local /home/brum/repo/sounds/brum.mp3 &", shell=True)
 
                 sound.play(5)
                 sys.exit(0)
