@@ -82,8 +82,8 @@ def move(requiredSensors, action, direction = False):
 
     degrees = False
     degreeTable = {
-        'left': 512*3,
-        'right': 512*11,
+        'left': 512*11,
+        'right': 512*3,
         'forward': 0
     }
 
