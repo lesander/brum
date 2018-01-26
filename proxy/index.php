@@ -10,4 +10,14 @@ $context = stream_context_create([
 	]
 ]);
 
-echo file_get_contents("http://github.brum.ultrahook.com$path", false, $context);
+if ($path == '/status') {
+	echo file_get_contents("status.txt");
+}
+
+else if ($path == '/setstatus') {
+	file_put_contents("status.txt", $_GET["s"]);
+}
+
+else {
+	echo file_get_contents("http://github.brum.ultrahook.com$path", false, $context);
+}
