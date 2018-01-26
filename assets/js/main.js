@@ -42,10 +42,10 @@ $(submitBtn).on(`click`, (event) => {
   $.post(`${endpoint}/destination/${value}`, (response) => {
 
     // Handle any error(s).
-    if (response.statusCode !== 200) {
-      alert('Er ging iets mis met het versturen van de keuze. Probeer het nog een keer.')
-      console.log(response)
-    }
+    //if (response.statusCode !== 200) {
+    //  alert('Er ging iets mis met het versturen van de keuze. Probeer het nog een keer.')
+    //  console.log(response)
+    //}
 
     // Display the in-transit screen.
     $(`#buttons`).hide()
