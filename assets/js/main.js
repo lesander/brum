@@ -56,15 +56,13 @@ $(submitBtn).on(`click`, (event) => {
     // user the arrived screen.
     const polling = setInterval(() => {
 
-      if (!hasArrived) {
-        $.post(`${endpoint}/status`, (response) => {
-          if (response.body == 'arrived') {
-            clearInterval(polling)
-            $(`#status > .in-transit`).hide()
-            $(`#status > .arrived`).show()
-          }
-        })
-      }
+      $.post(`${endpoint}/status`, (response) => {
+        if (response.body == 'arrived') {
+          clearInterval(polling)
+          $(`#status > .in-transit`).hide()
+          $(`#status > .arrived`).show()
+        }
+      })
 
     }, 5000)
 
