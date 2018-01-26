@@ -26,7 +26,7 @@ fi
 Add executing permissions with `sudo chmod +x /etc/network/if-up.d/wlan0-up`
 
 ## API Keys
-The API keys used in this project are no longer being used and are thus safe to publish.
+The API keys used in this project are revoked and no longer being used and are thus safe to publish.
 
 ## License
 This code is released under the MIT License.
