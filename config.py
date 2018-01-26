@@ -42,5 +42,5 @@ piezo = { id: 'front', 'pin': 16 }
 ways = {
     'apple': 'forward',
     'starbucks': 'left',
-    'siencecenter': 'right'
+    'sciencecenter': 'right'
 }
