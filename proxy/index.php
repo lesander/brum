@@ -18,6 +18,4 @@ else if ($path == '/setstatus') {
 	file_put_contents("status.txt", $_GET["s"]);
 }
 
-else {
-	echo file_get_contents("http://github.brum.ultrahook.com$path", false, $context);
-}
+echo file_get_contents("http://github.brum.ultrahook.com$path", false, $context);
