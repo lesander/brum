@@ -9,7 +9,7 @@ import config, sensors
 import RPi.GPIO as GPIO
 from time import sleep
 import sound
-import sys
+import sys, urllib2
 
 previousLiveSensors = False
 hasHadCrossingBefore = False
@@ -138,8 +138,9 @@ def move(requiredSensors, action, direction = False):
             elif (hasHadCrossingBefore == True and liveSensors == [1,1,1]):
                 print 'FINISH'
 
-                with open('status.txt', 'w') as file:
-                    file.write('arrived')
+                #with open('status.txt', 'w') as file:
+                #    file.write('arrived')
+                urllib2.urlopen("http://188.166.124.168/setstatus?s=arrived").read()
 
                 sound.play(5)
                 sys.exit(0)

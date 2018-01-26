@@ -5,7 +5,7 @@
 # https://github.com/lesander/brum
 # start.py
 
-import config, sound, time, sys, os
+import config, sound, time, sys, os, urllib2
 import RPi.GPIO as GPIO
 from move import move
 
@@ -19,8 +19,9 @@ print '--- BRUM STARTING!!! ---'
 os.chdir('/home/brum/repo')
 
 # Reset the status file.
-with open('status.txt', 'w') as file:
-    file.write('in-transit')
+#with open('status.txt', 'w') as file:
+#    file.write('in-transit')
+urllib2.urlopen("http://188.166.124.168/setstatus?s=").read()
 
 # Clean gpio states before we continue.
 print '[*] Cleaning GPIO states and setting mode..'
