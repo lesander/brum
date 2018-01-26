@@ -7,7 +7,7 @@
 
 const cardImages = $(`.card > img`)
 const submitBtn = $(`.submit > button`)
-const endpoint = `https://api.bestuurbrum.nl`
+const endpoint = `http://188.166.124.168`
 
 /**
  * Select or deselect the clicked card on click
