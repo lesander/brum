@@ -80,6 +80,6 @@ while True:
         response = status
 
     # Send our response.
-    http_response = "\nHTTP/1.1 200 OK\n\n" + response
+    http_response = "HTTP/1.1 200 OK\n\n" + response
     client_connection.sendall(http_response)
     client_connection.close()
